@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Departamentos</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Departamentos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Listado de Departamentos - {{ numero }}</h1>
+        <h5>Listado de Departamentos - {{ numero }}</h5>
 
         {# Mostrar mensajes flash de Flask #}
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -22,16 +22,16 @@
         {% endwith %}
 
         <div style="margin-bottom: 20px;">
-            <a href="{{ url_for('crear_departamento') }}" class="btn">Crear Nuevo Departamento</a> | 
+            <a href="{{ url_for('crear_departamento') }}">Crear Nuevo Departamento</a> | 
             <a href="{{ url_for('los_edificios') }}">Ver Edificios</a>
         </div>
 
         {% for e in datos %}
         <ol>
-          <li><b>Propietario: </b>{{ e['propietario_completo'] }}</li>
-          <li><b>Costo: </b>${{ e['costo'] }}</li>
-          <li><b>Número de cuartos: </b>{{ e['cuartos_num'] }}</li>
-          <li><b>Edificio Perteneciente: </b>{{ e['edificio'] }}</li>
+          <li><b>Propietario: </b>{{ e['nombre_completo_propietario'] }}</li>
+          <li><b>Costo: </b>${{ e['costo_departamento'] }}</li>
+          <li><b>Número de cuartos: </b>{{ e['numero_cuartos'] }}</li>
+          <li><b>Edificio: </b>{{ e['edificio'] }}</li>
         </ol>
         <hr>
         {% else %}
