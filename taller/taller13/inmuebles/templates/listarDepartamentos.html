@@ -1,0 +1,66 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Departamentos - Taller 13
+{% endblock %}
+
+{% block content %}
+
+<section class="table-section">
+  <h2>Listado de departamentos</h2>
+
+  <p style="margin-bottom: 20px;">
+    <a href="{% url 'crear_departamento' %}" class="btn primary">Agregar departamento</a>
+  </p>
+
+  <table id="tabla_datos">
+    <thead>
+      <tr>
+        <th>Propietario</th>
+        <th>Costo</th>
+        <th>Cuartos</th>
+        <th>Edificio</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for d in departamentos %}
+      <tr>
+        <td>{{ d.nombre_completo_propietario }}</td>
+        <td>${{ d.costo_departamento }}</td>
+        <td>{{ d.numero_cuartos }}</td>
+        <td>
+          <span class="yellow">{{ d.edificio.nombre }}</span>
+        </td>
+
+        <td>
+          <a href="{% url 'obtener_departamento' d.id %}" class="yellow">Ver</a>
+          <br>
+          <a href="{% url 'editar_departamento' d.id %}" class="yellow">Editar</a>
+          <br>
+          <a href="{% url 'eliminar_departamento' d.id %}"
+             class="yellow"
+             onclick="return confirm('¿Está seguro de eliminar este departamento?')">
+             Eliminar
+          </a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">No hay departamentos registrados.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+{% endblock %}
