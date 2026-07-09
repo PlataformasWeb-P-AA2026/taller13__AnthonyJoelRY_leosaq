@@ -1,0 +1,12 @@
+# --- BACKEND (Django & API REST) ---
+Django>=4.2,<5.1
+djangorestframework>=3.14.0
+django-filter>=23.0
+
+# --- DRIVERS DE BASES DE DATOS ---
+# SQLite ya viene incluido en Python, pero agregamos Postgres por si lo configuran en producción
+psycopg2-binary>=2.9.0
+
+# --- CLIENTE (Flask & Consumo API) ---
+Flask>=3.0.0
+requests>=2.31.0
