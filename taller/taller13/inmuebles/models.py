@@ -3,8 +3,8 @@ from django.db import models
 
 class Edificio(models.Model):
     TIPO_CHOICES = [
-        ('residencial', 'Residencial'),
-        ('comercial', 'Comercial'),
+        ("residencial", "Residencial"),
+        ("comercial", "Comercial"),
     ]
 
     nombre = models.CharField(max_length=100)
@@ -23,8 +23,10 @@ class Departamento(models.Model):
     edificio = models.ForeignKey(
         Edificio,
         on_delete=models.CASCADE,
-        related_name='departamentos'
+        related_name="departamentos"
     )
 
     def __str__(self):
-        return "%s - %s" % (self.nombre_completo_propietario, self.edificio.nombre)
+        return "%s - %s" % (self.nombre_completo_propietario,
+            self.edificio.nombre
+        )
