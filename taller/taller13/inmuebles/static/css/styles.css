@@ -301,3 +301,61 @@ footer {
     font-size: 14px;
   }
 }
+
+
+.table-section table tbody td {
+  color: #000000;
+}
+
+
+.table-section .dataTables_wrapper,
+.table-section .dataTables_length,
+.table-section .dataTables_filter,
+.table-section .dataTables_info,
+.table-section .dataTables_paginate {
+  color: #000000 !important;
+}
+
+
+.table-section .dataTables_length select,
+.table-section .dataTables_filter input {
+  color: #000000 !important;
+  background-color: #ffffff;
+}
+
+
+.table-section table tbody td a {
+  color: #000000;
+  font-weight: bold;
+}
+
+
+.table-section table tbody td .yellow {
+  color: #000000;
+  font-weight: bold;
+}
+
+
+.table-section .dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #000000 !important;
+  font-weight: bold;
+}
+
+
+.table-section .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  color: #000000 !important;
+  background: #ffffff !important;
+  border: 1px solid #cccccc !important;
+}
+
+.table-section .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  color: #000000 !important;
+  opacity: 0.8;
+}
+
+
+.table-section .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  color: #000000 !important;
+  background: var(--amarillo) !important;
+  border: 1px solid var(--amarillo) !important;
+}

@@ -31,7 +31,6 @@
         <a href="{% url 'index' %}">Inicio</a>
         <a href="{% url 'listar_edificios' %}">Edificios</a>
         <a href="{% url 'listar_departamentos' %}">Departamentos</a>
-        <a href="/api/">API</a>
 
         {% if user.is_authenticated %}
           <a href="{% url 'logout_view' %}">Salir</a>

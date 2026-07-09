@@ -8,25 +8,9 @@
 
 <section class="hero">
   <div>
-    <span class="badge">Django Rest Framework + Flask</span>
 
     <h1>Gestión de Edificios y Departamentos</h1>
 
-    <p>
-      Aplicación web para registrar edificios y departamentos.
-      Además, permite exponer servicios web protegidos con token
-      para ser consumidos desde una aplicación en Flask.
-    </p>
-
-    <div class="hero-buttons">
-      <a href="{% url 'listar_edificios' %}" class="btn primary">
-        Ver edificios
-      </a>
-
-      <a href="{% url 'listar_departamentos' %}" class="btn secondary">
-        Ver departamentos
-      </a>
-    </div>
   </div>
 
   <div class="hero-box">
@@ -42,103 +26,9 @@
   </div>
 </section>
 
-<section class="table-section">
-  <h2>Listado general de edificios</h2>
-
-  <table id="tabla_datos">
-    <thead>
-      <tr>
-        <th>Edificio</th>
-        <th>Dirección</th>
-        <th>Ciudad</th>
-        <th>Tipo</th>
-        <th>Departamentos</th>
-        <th>Opciones</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {% for e in edificios %}
-      <tr>
-        <td>{{ e.nombre }}</td>
-        <td>{{ e.direccion }}</td>
-        <td>{{ e.ciudad }}</td>
-        <td>
-          <span class="yellow">{{ e.tipo }}</span>
-        </td>
-
-        <td>
-          <ul class="modern-list">
-            {% for d in e.departamentos.all %}
-              <li>
-                {{ d.nombre_completo_propietario }} -
-                ${{ d.costo_departamento }} -
-                {{ d.numero_cuartos }} cuartos
-              </li>
-            {% empty %}
-              <li>No tiene departamentos registrados</li>
-            {% endfor %}
-          </ul>
-        </td>
-
-        <td>
-          <a href="{% url 'obtener_edificio' e.id %}" class="yellow">Ver</a>
-          <br>
-          <a href="{% url 'editar_edificio' e.id %}" class="yellow">Editar</a>
-          <br>
-          <a href="{% url 'eliminar_edificio' e.id %}"
-             class="yellow"
-             onclick="return confirm('¿Está seguro de eliminar este edificio?')">
-             Eliminar
-          </a>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</section>
-
-<section class="cards-section">
-  <h2>Opciones del <span>sistema</span></h2>
-
-  <div class="cards">
-
-    <div class="card">
-      <div class="icon">🏢</div>
-      <h3>Edificios</h3>
-      <p>
-        Permite registrar edificios con su nombre, dirección,
-        ciudad y tipo.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🚪</div>
-      <h3>Departamentos</h3>
-      <p>
-        Permite registrar departamentos con propietario,
-        costo, número de cuartos y edificio.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🔗</div>
-      <h3>Servicios Web</h3>
-      <p>
-        Permite listar, crear, actualizar y eliminar entidades
-        mediante una API protegida con token.
-      </p>
-    </div>
-
-  </div>
-</section>
 
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('#tabla_datos').DataTable();
-  });
-</script>
+
 {% endblock %}
