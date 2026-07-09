@@ -1,0 +1,38 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Departamento - Taller 13
+{% endblock %}
+
+{% block content %}
+
+<section class="table-section">
+  <h2>Información del departamento</h2>
+
+  <table id="tabla_datos">
+    <thead>
+      <tr>
+        <th>Propietario</th>
+        <th>Costo</th>
+        <th>Cuartos</th>
+        <th>Edificio</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>{{ departamento.nombre_completo_propietario }}</td>
+        <td>${{ departamento.costo_departamento }}</td>
+        <td>{{ departamento.numero_cuartos }}</td>
+        <td>
+          <span class="yellow">{{ departamento.edificio.nombre }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <a href="{% url 'listar_departamentos' %}" class="yellow">Volver al listado</a>
+</section>
+
+{% endblock %}
