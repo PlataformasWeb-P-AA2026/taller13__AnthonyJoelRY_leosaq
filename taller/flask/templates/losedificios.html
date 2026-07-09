@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Nuevo Número Telefónico</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edificios</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Crea nueva Dirección</h1>
+        <h5>Listado de Edificios - {{ numero_edificios }}</h5>
 
         {# Mostrar mensajes flash de Flask #}
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -21,36 +21,22 @@
           {% endif %}
         {% endwith %}
 
+        <div style="margin-bottom: 20px;">
+            <a href="{{ url_for('crear_edificio') }}">Crear Nuevo Edificio</a> | 
+            <a href="{{ url_for('los_departamentos') }}">Ver Departamentos</a>
+        </div>
 
-            <form method="POST">
-                <div>
-                    <label for="descripcion">Descripción:</label>
-                    <input type="text" id="descripcion" name="descripcion" required>
-                </div>
-                <div>
-                    <label for="tipo">Tipo (ej. Celular, Convencional):</label>
-                    <input type="text" id="tipo" name="tipo" required> 
-                </div>
-                <div>
-                    <label for="estudiante">Estudiante:</label>
-                    <select id="estudiante" name="estudiante" required>
-                        {% if estudiantes %}
-                            {# Se itera sobre la lista de estudiantes obtenida de la API #}
-                            {% for estudiante in estudiantes %}
-                                {# El 'value' del option debe ser la URL completa del estudiante #}
-                                {# ya que tu NumeroTelefonicoSerializer espera un HyperlinkedRelatedField #}
-                                <option value="{{ estudiante.url }}">{{ estudiante.nombre }} {{ estudiante.apellido }} ({{ estudiante.cedula }})</option>
-                            {% endfor %}
-                        {% else %}
-                            <option value="">No hay estudiantes disponibles</option>
-                        {% endif %}
-                    </select>
-                </div>
-                <button type="submit">Crear Dirección</button>
-            </form>
-        
-
-        <a href="{{ url_for('los_estudiantes') }}" class="back-link">Volver a la lista de estudiantes</a>
+        {% for e in edificios %}
+        <ol>
+          <li><b>Nombre: </b>{{ e['nombre'] }}</li>
+          <li><b>Dirección: </b>{{ e['direccion'] }}</li>
+          <li><b>Ciudad: </b>{{ e['ciudad'] }}</li>
+          <li><b>Tipo: </b>{{ e['tipo'] }}</li>
+        </ol>
+        <hr>
+        {% else %}
+        <p>No hay edificios registrados.</p>
+        {% endfor %}
     </div>
 </body>
 </html>

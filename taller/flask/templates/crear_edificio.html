@@ -1,21 +1,51 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Teléfonos - 2</title>
-  </head>
-  <body>
-    <h5>Listado de telefonos - {{numero}}</h5>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nuevo Edificio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Crear Nuevo Edificio</h1>
 
-    {% for e in datos %}
+        {# Mostrar mensajes flash de Flask si la API reporta éxito o error #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flash-messages">
+            {% for category, message in messages %}
+              <li class="flash-message flash-{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
 
-    <ol>
-      <li><b>Teléfono: </b>{{e['telefono']}}</li>
-      <li><b>Tipo: </b>{{e['tipo']}}</li>
-      <li><b>Estudiante: </b>{{e['estudiante']}}</li>
-    </ol>
-    <hr>
-    {% endfor%}
-  </body>
+        <form method="POST">
+            <div>
+                <label for="nombre">Nombre del Edificio:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div>
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" required>
+            </div>
+            <div>
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" id="ciudad" name="ciudad" required>
+            </div>
+            <div>
+                <label for="tipo">Tipo:</label>
+                <select id="tipo" name="tipo" required>
+                    <option value="residencial">Residencial</option>
+                    <option value="comercial">Comercial</option>
+                </select>
+            </div>
+            <button type="submit">Crear Edificio</button>
+        </form>
+
+        <br>
+        <a href="{{ url_for('los_edificios') }}" class="back-link">Volver a la lista de edificios</a>
+    </div>
+</body>
 </html>

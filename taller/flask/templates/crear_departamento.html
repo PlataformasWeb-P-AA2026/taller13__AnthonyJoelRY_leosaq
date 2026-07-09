@@ -10,6 +10,17 @@
     <div class="container">
         <h1>Crear Nuevo Departamento</h1>
 
+        {# Mostrar mensajes flash de Flask si los hay #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flash-messages">
+            {% for category, message in messages %}
+              <li class="flash-message flash-{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
         <form method="POST">
             <div>
                 <label for="propietario_completo">Nombre Completo del Propietario:</label>
@@ -27,9 +38,8 @@
                 <label for="edificio">Edificio al que pertenece:</label>
                 <select id="edificio" name="edificio" required>
                     {% if edificios %}
-                        {# Se itera sobre la lista de edificios obtenida de la API de Django #}
                         {% for edificio in edificios %}
-                            {# El 'value' envía la URL completa ya que la API espera un HyperlinkedRelatedField #}
+                            {# El 'value' envía la URL porque Django REST usa HyperlinkedRelatedField #}
                             <option value="{{ edificio.url }}">{{ edificio.nombre }} ({{ edificio.ciudad }})</option>
                         {% endfor %}
                     {% else %}

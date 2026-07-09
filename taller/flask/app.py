@@ -16,6 +16,7 @@ headers = {
 def hello_world():
     return "<p>Hola mundo - Gestión de Edificios y Departamentos</p>"
 
+
 # VISTAS PARA EDIFICIOS
 
 @app.route("/los/edificios")
@@ -48,7 +49,7 @@ def crear_edificio():
         ciudad = request.form['ciudad']
         tipo = request.form['tipo'] # residencial o comercial
 
-        # Estructura JSON para Django según la problemática
+        # Mapea perfectamente con tu clase Edificio
         edificio_data = {
             'nombre': nombre,
             'direccion': direccion,
@@ -82,11 +83,12 @@ def los_departamentos():
     
     datos2 = []
     for d in datos:
+        # CORRECCIÓN: Se lee usando exactamente las llaves generadas por el modelo de Django
         datos2.append({
-            'propietario_completo': d['propietario_completo'], # nombre completo del propietario
-            'costo': d['costo'],
-            'cuartos_num': d['cuartos_num'], # número de cuartos
-            'edificio': obtener_nombre_edificio(d['edificio']) # Resuelve la URL al nombre del edificio
+            'nombre_completo_propietario': d['nombre_completo_propietario'], 
+            'costo_departamento': d['costo_departamento'],
+            'numero_cuartos': d['numero_cuartos'], 
+            'edificio': obtener_nombre_edificio(d['edificio']) 
         })
         
     return render_template("losdepartamentos.html", datos=datos2, numero=numero)
@@ -104,16 +106,18 @@ def crear_departamento():
     edificios_disponibles = json.loads(r_edificios.content)['results']
 
     if request.method == 'POST':
+        # Mapeamos lo que viene del formulario HTML
         propietario_completo = request.form['propietario_completo']
         costo = float(request.form['costo'])
         cuartos_num = int(request.form['cuartos_num'])
-        edificio_url = request.form['edificio'] # Recibe la URL del edificio seleccionado
+        edificio_url = request.form['edificio'] 
 
+        # CORRECCIÓN: Estructura JSON adaptada a los campos idénticos de tu modelo de Django
         departamento_data = {
-            'propietario_completo': propietario_completo,
-            'costo': costo,
-            'cuartos_num': cuartos_num,
-            'edificio': edificio_url # Enviamos el hipervínculo (URL) del edificio
+            'nombre_completo_propietario': propietario_completo,
+            'costo_departamento': costo,
+            'numero_cuartos': cuartos_num,
+            'edificio': edificio_url 
         }
 
         r = requests.post("http://localhost:8000/api/departamentos/",
@@ -123,7 +127,8 @@ def crear_departamento():
         print(f"Status Code (Crear Departamento): {r.status_code}")
 
         nuevo_depto = json.loads(r.content)
-        flash(f"Departamento de '{nuevo_depto['propietario_completo']}' creado exitosamente!", 'success')
+        # CORRECCIÓN: Se lee la respuesta usando la llave correcta de Django
+        flash(f"Departamento de '{nuevo_depto['nombre_completo_propietario']}' creado exitosamente!", 'success')
         return redirect(url_for('los_departamentos'))
 
     return render_template("crear_departamento.html",
