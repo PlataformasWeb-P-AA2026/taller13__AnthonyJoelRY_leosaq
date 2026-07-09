@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'una-clave-secreta-000001'
 
 # Configuración de cabeceras con el Token
-token = 'c7113110d24ef19be08e0c33565f94db0de3325e'
+token = '2be26e12d5be3ee431e4dc4901e24685a04bf788'
 headers = {
     "Authorization": f"Token {token}",
     "Content-Type": "application/json"
