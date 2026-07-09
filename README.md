@@ -71,3 +71,13 @@ Nota: Un departamento pertenece a un edificio
 	- Listar Departamentos haciendo uso de los servicios web creados en el proyecto de Django.
 	- Crear Edificios haciendo uso de los servicios web creados en el proyecto de Django.
 	- Crear Departamentos haciendo uso de los servicios web creados en el proyecto de Django.
+
+
+
+# Evidencias
+
+SQLite
+<img width="758" height="367" alt="image" src="https://github.com/user-attachments/assets/8d2cd02c-d4c1-4cc4-b913-055bcbe55794" />
+
+
+
