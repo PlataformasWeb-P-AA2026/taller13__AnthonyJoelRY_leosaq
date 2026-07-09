@@ -1,4 +1,4 @@
-# taller13
+# taller13 - Anthony Romero y Leandro Saquisari
 
 ## Creación de Servicio Web y Consumo vía Flask
 
@@ -78,6 +78,9 @@ Nota: Un departamento pertenece a un edificio
 
 SQLite
 <img width="758" height="367" alt="image" src="https://github.com/user-attachments/assets/8d2cd02c-d4c1-4cc4-b913-055bcbe55794" />
+<img width="578" height="135" alt="image" src="https://github.com/user-attachments/assets/9d74c9bd-fccb-48b5-9aff-7e757f038fa1" />
+Anthony Romero y Leandro Saquisari
+
 
 
 
